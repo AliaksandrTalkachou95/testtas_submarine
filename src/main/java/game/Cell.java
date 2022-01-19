@@ -6,6 +6,7 @@ public class Cell {
     private int x;
     private int y;
     private boolean isHit = false;
+    private Submarine submarine = null;
 
     public Cell(int x, int y) {
         this.x = x;
@@ -47,5 +48,13 @@ public class Cell {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public Submarine getSubmarine() {
+        return submarine;
+    }
+
+    public void setSubmarine(Submarine submarine) {
+        this.submarine = submarine;
     }
 }

@@ -1,24 +1,22 @@
-import game.Board;
-import game.Cell;
+import game.NewBoard;
 
 import java.util.Random;
 
 public class GameRunner {
     public static void main(String[] args) {
         System.out.println("Starting a game");
-        Board board = new Board();
+        NewBoard board = new NewBoard();
         System.out.println("Init submarines!");
-        board.initSubmarines();
+        board.initBoard();
 
-        boolean isAllDown = false;
+        boolean isAllDown;
 
         do {
             Random random = new Random();
-            int x = random.nextInt(9);
-            int y = random.nextInt(6);
-            Cell cell = new Cell(x, y);
+            int x = random.nextInt(8);
+            int y = random.nextInt(5);
             System.out.println("Hitting x: " + x + " y: " + y);
-            isAllDown = board.hit(cell);
+            isAllDown = board.hitCell(x, y);
         } while (!isAllDown);
 
         System.out.println("All subs down!!");

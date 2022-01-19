@@ -1,46 +1,55 @@
 package game;
 
-import java.util.Optional;
+import java.util.Objects;
 import java.util.Set;
 
 public class Submarine {
-    private Set<Cell> cells;
-    private int length;
-    private boolean down = false;
+    private String name;
+    private final Set<Cell> cells;
 
     public Submarine(Set<Cell> cells) {
         this.cells = cells;
     }
 
-    public int getLength() {
-        return length;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
+    public Submarine(String name, Set<Cell> cells) {
+        this.cells = cells;
+        this.name = name;
     }
 
     public Set<Cell> getCells() {
         return cells;
     }
 
-    public void setCells(Set<Cell> cells) {
-        this.cells = cells;
+    public void removeSubCell(Cell cell) {
+        cells.remove(cell);
     }
 
-    public boolean isDown() {
-        return down;
-    }
-
-    public void setDown(boolean down) {
-        this.down = down;
-    }
-
-    public void markSubAsDown() {
-        Optional<Cell> notHit = this.getCells().stream().filter(cell -> !cell.isHit()).findAny();
-        if (notHit.isEmpty()) {
-            this.setDown(true);
+    public boolean markSubAsDown() {
+        if (cells.isEmpty()) {
+            System.out.println(name + " is down!");
+            return true;
         }
+        return false;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Submarine submarine = (Submarine) o;
+        return name.equals(submarine.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
